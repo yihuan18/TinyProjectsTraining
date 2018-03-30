@@ -3,6 +3,8 @@ import tkinter.filedialog
 import readExcel
 import groupMatching
 import personMatching
+import fileRename
+
 
 def xz():
     global filename
@@ -15,28 +17,30 @@ def selectPath():
 
 
 def exchange():
-    print("根据excel进行匹配，然后在选择的路径中更改文件命名")
+    # print("根据excel进行匹配，然后在选择的路径中更改文件命名")
     #获取excel表中的相关学生信息
     groupNumList, stuIdNumList, nameList = readExcel.readExcel(filename.get())
     #根据交换选项进行交叉批改的名单匹配
     if groupExchangeFlag.get() == 0:
         groupNumListMatch, stuIdNumListMatch, nameListMatch = personMatching.personMatching(groupNumList, stuIdNumList, nameList)
+        fileRename.fileRename(path.get(), stuIdNumList, stuIdNumListMatch, 0, groupNumList, groupNumListMatch)
     elif groupExchangeFlag.get() == 1:
         groupNumListMatch, stuIdNumListMatch, nameListMatch = groupMatching.groupMatching(groupNumList, stuIdNumList, nameList)
+        fileRename.fileRename(path.get(), stuIdNumList, stuIdNumListMatch, 1, groupNumList, groupNumListMatch)
     # #####debug
-    print(filename.get())
-    print(path.get())
-    print(groupNumList)
-    print(stuIdNumList)
-    print(nameList)
-    print(groupNumListMatch)
-    print(stuIdNumList)
-    print(nameListMatch)
+    # print(filename.get())
+    # print(path.get())
+    # print(groupNumList)
+    # print(stuIdNumList)
+    # print(nameList)
+    # print(groupNumListMatch)
+    # print(stuIdNumList)
+    # print(nameListMatch)
 
 def getoptions():
     global groupExchangeFlag
-    print('\n groupExchangeFlag is ')
-    print(groupExchangeFlag.get())
+    # print('\n groupExchangeFlag is ')
+    # print(groupExchangeFlag.get())
 
 
 root = Tk()
