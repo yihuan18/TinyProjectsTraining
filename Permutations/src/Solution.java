@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -7,7 +8,6 @@ import java.util.List;
 public class Solution {
         public int n;
         public List<List<Integer>> result = new ArrayList<>();
-        int count_result;
         List<Integer> queue = new ArrayList<>();
         int a[];
         int book[];
@@ -40,4 +40,17 @@ public class Solution {
                 }
             }
         }// end dfs
+
+        public static void main(String[] args){
+            Solution solution = new Solution();
+            List<List<Integer>> result;
+            int[] nums = {1,1,1,2,3};
+            result = solution.permute(nums);
+            for(List<Integer> i : result){
+                for(Integer n : i){
+                    System.out.print(n + " ");
+                }
+                System.out.println();
+            }
+        }
 }
